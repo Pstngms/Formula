@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+Новости
+{% endblock %}
+{% block content %}
+
+    <div class="p-3"   style="background-color: #fafafa;" >
+        <div class="container  mb-4 mt-3"  >
+                <H1 >Новости</H1>
+        </div>
+                <div class="dropdown container d-grid gap-2 d-md-block " >
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Отфильтровать по категории
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      {% for item in category %}
+                    <li><a class="dropdown-item" href="{% url 'category' item.pk %}">{{ item.title }}</a></li>
+                      {% endfor %}
+                  </ul>
+                </div>
+    </div>
+
+    <div class=" container " >
+    {% for item in news %}
+        {% if item.is_published %}
+        <div class="card mb-3 my-4  " style="background-color: #fafafa;">
+        <div class="card-body mb-2" style="background-color: #bbcbdf;">
+        <h5 class="card-title ">{{ item.title }}</h5>
+        </div>
+        <div id="carouselExampleDark{{item.id}}" class="carousel carousel-dark slide mb-2 " data-bs-ride="carousel">
+          <div class="carousel-inner">
+              {% if item.photo1 %}
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="{{ item.photo1.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt="" width="800ph" >
+            </div>
+              {% endif %}
+                {% if item.photo2 %}
+            <div class="carousel-item" data-bs-interval="10000">
+              <img src="{{ item.photo2.url }}" class="img-fluid rounded mx-auto d-block" alt="" width="800ph" >
+            </div>
+                {% endif %}
+              {% if item.photo3 %}
+            <div class="carousel-item" data-bs-interval="10000">
+              <img src="{{ item.photo3.url }}" class="img-fluid rounded mx-auto d-block" alt="" width="800ph" >
+            </div>
+              {% endif %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark{{item.id}}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button"  data-bs-target="#carouselExampleDark{{item.id}}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+          <div class="card-body border rounded">
+              {% autoescape off %}
+            <p class="card-text">{{ item.content|safe}}</p>
+              {% endautoescape %}
+            <p class="card-text"><small class="text-muted">{{ item.created_at }}</small></p>
+          </div>
+        </div>
+        {% endif %}
+
+    {% endfor %}
+    </div>
+
+{% endblock %}
+

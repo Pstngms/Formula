@@ -1,0 +1,26 @@
+{% load events_reg %}
+
+{% is_reg events_post_id as is_registered %}
+
+{% if is_registered %}
+    {% events_r_id events_post_id as events_reg_id %}
+{% endif %}
+
+<form action="
+        {% if not is_registered %}{% url 'add' %}{% else %}{% url 'remove' %}{% endif %}"
+      method="post">{% csrf_token %}
+    <input type="hidden" name="events_post_id" value="{{ events_post_id }}">
+    <input type="hidden" name="user_id" value="{% if user.is_authenticated %}{{ request.user.id }}{% else %}None{% endif %}">
+    <input type="hidden" name="url_form" value="{{ request.path }}">
+
+    {% if is_registered %}
+        <input type="hidden" name="events_reg_id" value="{{ events_reg_id }}">
+    {% endif %}
+
+    {% if not is_registered %}
+        <button type="submit" class="btn btn-outline-primary btn-lg mx-auto d-block mx-5" >Записаться</button>
+    {% else %}
+        <button type="submit" class="btn btn-secondary btn-lg mx-auto d-block mx-5">Отписаться</button>
+    {% endif %}
+
+</form>

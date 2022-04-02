@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+Мероприятия
+{% endblock %}
+{% block content %}
+
+    <div class="p-3"   style="background-color: #fafafa;" >
+        <div class="container  mb-4 mt-3"  >
+                <H1 >Мероприятия</H1>
+        </div>
+    </div>
+
+    <div class="container">
+
+        {% if object.is_published %}
+        <div class="card mb-3 my-4  " style="background-color: #fafafa;">
+        <div class="card-body mb-2" style="background-color: #bbcbdf;">
+        <h5 class="card-title ">{{ object.title }}</h5>
+        </div>
+              {% if object.photo%}
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="{{ object.photo.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt="" width="500ph" height="100px" >
+            </div>
+              {% endif %}
+
+          <div class="card-body border rounded">
+              {% autoescape off %}
+            <p class="card-text">{{ object.content|safe}}</p>
+              {% endautoescape %}
+            <p class="card-text"><small class="text-muted">{{ object.start_date }}</small></p>
+          </div>
+         <div class="card-body border rounded">
+
+            <p class="card-text">{{ object.communication}}</p>
+
+          </div>
+          <div class="card-body border rounded">
+
+           {% include 'events/reg_events.html' with events_post_id=object.id %}
+
+          </div>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}
+

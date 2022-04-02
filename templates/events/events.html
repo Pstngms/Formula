@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}
+Мероприятия
+{% endblock %}
+{% block content %}
+
+    <div class="p-3"   style="background-color: #fafafa;" >
+        <div class="container  mb-4 mt-3"  >
+                <H1 >Мероприятия</H1>
+        </div>
+    </div>
+
+    <div class="container">
+    <div class="row justify-content-md-center ">
+        {% for item in events %}
+        {% if item.is_published %}
+
+            <div class="card" style="width: 500px; margin-top: 35px; display: block;margin-left: auto;margin-right: auto">
+            {% if item.photo%}
+              <img src="{{ item.photo.url }}" class="card-img-top" alt="" style="margin-top:10px">
+            {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                {% autoescape off %}
+                    <p class="card-text">{{ item.content|safe|truncatewords:20}}</p>
+                {% endautoescape %}
+                <a href="{% url 'view_events' item.pk%}" class="btn btn-outline-primary mx-auto d-block mx-5">Узнать подробности и записаться</a>
+              </div>
+            </div>
+
+
+        {% endif %}
+        {% endfor %}
+    </div>
+{#        {% for item in events %}#}
+{#        {% if item.is_published %}#}
+{#        <div class="card mb-3 my-4  " style="background-color: #fafafa;">   #}
+{#        <div class="card-body mb-2" style="background-color: #bbcbdf;">#}
+{#        <a class="card-title " href="{% url 'view_events' item.pk%}">{{ item.title }}</a>#}
+{#        </div>#}
+{#              {% if item.photo%}#}
+{#            <div class="carousel-item active" data-bs-interval="10000">#}
+{#              <img src="{{ item.photo.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt="" width="500ph" height="100px" >#}
+{#            </div>#}
+{#              {% endif %}#}
+{##}
+{#          <div class="card-body border rounded">#}
+{#              {% autoescape off %}#}
+{#            <p class="card-text">{{ item.content|safe}}</p>#}
+{#              {% endautoescape %}#}
+{#            <p class="card-text"><small class="text-muted">{{ item.start_date }}</small></p>#}
+{#          </div>#}
+{#         <div class="card-body border rounded">#}
+{##}
+{#            <p class="card-text" >{{ item.communication}}</p>#}
+{##}
+{#          </div>#}
+{##}
+{#        </div>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+    </div>
+
+{% endblock %}
+
