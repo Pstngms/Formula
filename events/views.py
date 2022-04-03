@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views import View
@@ -31,6 +32,7 @@ class AddReg(View):
         except Exception as e:
             event_post = EventsRegistration(event=events_post_inst, user_email=user_inst, is_registered=True)
             event_post.save()
+        messages.success(request, 'Вы успешно записались на мероприятие')
         return redirect(url_form)
 
 
@@ -40,4 +42,5 @@ class RemoveReg(View):
         url_form = request.POST.get('url_form')
         event_post = EventsRegistration.objects.get(id=events_reg_id)
         event_post.delete()
+        messages.warning(request, 'Вы успешно отменили запись на мероприятие')
         return redirect(url_form)

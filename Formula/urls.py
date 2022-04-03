@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts.views import register, user_login, user_logout
+from accounts.views import register, user_login, user_logout, profile
 from events.views import events_page, ViewEvents, AddReg, RemoveReg
 from home.views import home_page
 from news.views import get_category, news_page
@@ -21,7 +21,8 @@ urlpatterns = [
     path('events/', events_page, name='events'),
     path('events/<int:pk>/', ViewEvents.as_view(), name='view_events'),
     path('registration/add', AddReg.as_view(), name='add'),
-    path('registration/remove', RemoveReg.as_view(), name='remove')
+    path('registration/remove', RemoveReg.as_view(), name='remove'),
+    path('profile', profile, name='profile')
 ]
 
 if settings.DEBUG:

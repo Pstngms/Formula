@@ -6,7 +6,7 @@
 
     <div class="p-3"   style="background-color: #fafafa;" >
         <div class="container  mb-4 mt-3"  >
-                <H1 >Мероприятия</H1>
+                <H1 >{{ object.title }}</H1>
         </div>
     </div>
 
@@ -14,29 +14,43 @@
 
         {% if object.is_published %}
         <div class="card mb-3 my-4  " style="background-color: #fafafa;">
-        <div class="card-body mb-2" style="background-color: #bbcbdf;">
-        <h5 class="card-title ">{{ object.title }}</h5>
-        </div>
+
               {% if object.photo%}
-            <div class="carousel-item active" data-bs-interval="10000">
-              <img src="{{ object.photo.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt="" width="500ph" height="100px" >
-            </div>
+
+              <img src="{{ object.photo.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt="" width="500ph" height="100px" style="padding-top: 10px;padding-bottom: 20px">
+
               {% endif %}
 
           <div class="card-body border rounded">
               {% autoescape off %}
-            <p class="card-text">{{ object.content|safe}}</p>
+                  <p class="card-text" style="font-size: 17px"><strong>Описание:</strong></p>
+                    <p class="card-text">{{ object.content|safe}}</p>
               {% endautoescape %}
-            <p class="card-text"><small class="text-muted">{{ object.start_date }}</small></p>
           </div>
+            <div class="card-body border rounded">
+                 <p class="card-text" style="font-size: 17px"><strong>Место проведения: </strong></p>
+                <p class="card-text">{{ object.location}}</p>
+             </div>
+
          <div class="card-body border rounded">
-
+             <p class="card-text" style="font-size: 17px"><strong>Контакты для связи:</strong></p>
             <p class="card-text">{{ object.communication}}</p>
+         </div>
 
-          </div>
+            <div class="card-body border rounded">
+                 <p class="card-text" style="font-size: 17px"><strong>Начало мероприятия: </strong>{{ object.start_date}}</p>
+            </div>
+
+            {% if object.finish_date %}
+            <div class="card-body border rounded">
+                 <p class="card-text" style="font-size: 17px"><strong>Конец мероприятия: </strong>{{ object.finish_date}}</p>
+            </div>
+            {% endif %}
+
           <div class="card-body border rounded">
 
            {% include 'events/reg_events.html' with events_post_id=object.id %}
+
 
           </div>
         </div>

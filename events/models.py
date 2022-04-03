@@ -9,12 +9,13 @@ class Events(models.Model):
     content = models.TextField(blank=True, verbose_name='Описание')
     photo = models.ImageField(upload_to='photos/events/%Y/%m/%d', blank=True, verbose_name='Фото')
     start_date = models.DateTimeField(verbose_name='Начало')
-    finish_date = models.DateTimeField(verbose_name='Конец')
+    finish_date = models.DateTimeField(blank=True, null=True,verbose_name='Конец')
     communication = models.TextField(blank=True, verbose_name='Контакты')
+    location = models.TextField(blank=True, verbose_name='Место проведения')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано?')
 
     def get_absolute_url(self):
-        return reverse ('view_events', kwargs={'pk':self.pk})
+        return reverse('view_events', kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.title

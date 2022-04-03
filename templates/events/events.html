@@ -11,19 +11,24 @@
     </div>
 
     <div class="container">
-    <div class="row justify-content-md-center ">
+    <div class="row justify-content-md-center " >
         {% for item in events %}
         {% if item.is_published %}
 
-            <div class="card" style="width: 500px; margin-top: 35px; display: block;margin-left: auto;margin-right: auto">
+            <div class="card" style="width: 600px; margin-top: 35px; display: block;margin-left: auto;margin-right: auto;padding-top: 25px">
             {% if item.photo%}
-              <img src="{{ item.photo.url }}" class="card-img-top" alt="" style="margin-top:10px">
+              <img src="{{ item.photo.url }}" class="card-img-top rounded mx-auto d-block mx-5" alt="" style="margin-top:10px;width: 530px">
             {% endif %}
               <div class="card-body">
                 <h5 class="card-title">{{ item.title }}</h5>
                 {% autoescape off %}
                     <p class="card-text">{{ item.content|safe|truncatewords:20}}</p>
                 {% endautoescape %}
+              <div class="border-top" style="padding-top: 1em;padding-bottom: 1em">
+                 <p class="card-text" style="font-size: 16px" ><strong>Начало: </strong>{{ item.start_date}}</p>
+
+
+              </div>
                 <a href="{% url 'view_events' item.pk%}" class="btn btn-outline-primary mx-auto d-block mx-5">Узнать подробности и записаться</a>
               </div>
             </div>
