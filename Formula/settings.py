@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'ckeditor_uploader',
     'ckeditor',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'formula',
+        # 'USER': 'root',
+        # 'PASSWORD': 'iliailia2002',
+        # 'HOST': 'localhost',
     }
 }
 
@@ -132,3 +138,8 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

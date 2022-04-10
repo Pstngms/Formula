@@ -54,6 +54,8 @@
 }
     </style>
     {% if request.user.is_authenticated %}
+        <form method="POST" >
+        {% csrf_token %}
 <div class="container">
     <div class="main-body" style="padding-top: 30px">
           <div class="row gutters-sm">
@@ -67,17 +69,17 @@
                     </div>
                   </div>
                 </div>
+
               </div>
+
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/VK.com-logo.svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline" alt=""><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></img>  Вконтакте</h6>
-                      {% if not user.vk_link %}
 
-                          <a class="text-secondary " style="font-size: 14px" >Добавьте Vk id в настройках профиля</a>
-                             {% else %}
-                    <a class="text-secondary " href="https://vk.com/{{ user.vk_link }}">{{ user.vk_link }}</a>
-                          {% endif %}
+                    <label>
+                            <input type="text" class="form-control" name="vk_link" value="{{form.vk_link}}" />
+                        </label>
 
                   </li>
                 </ul>
@@ -86,63 +88,70 @@
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
+
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Фамилия</h6>
+                      <h6 class="mb-0 " style="line-height:35px">Фамилия</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{ user.last_name }}
+                        <label>
+                            <input class="form-control" type="text" name="last_name" value="{{form.last_name}}" />
+                        </label>
 
                     </div>
                   </div>
                     <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Имя</h6>
+                      <h6 class="mb-0 " style="line-height:35px">Имя</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{ user.first_name }}
+                      <label>
+                            <input type="text" class="form-control" name="first_name" value="{{form.first_name}}" />
+                        </label>
                     </div>
                   </div>
                     <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Отчество</h6>
+                      <h6 class="mb-0" style="line-height:35px">Отчество</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{ user.patronymic }}
+                       <label>
+                            <input type="text" class="form-control" name="patronymic" value="{{form.patronymic}}" />
+                        </label>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <h6 class="mb-0" style="line-height:35px">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{ user.email }}
+                        <label>
+                            <input type="text" class="form-control" name="email" value="{{form.email}}" />
+                        </label>
                     </div>
                   </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="line-height:35px">Мобильный телефон</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <label>
+                            <input type="text" class="form-control" name="phone" value="{{form.phone}}" />
+                        </label>
+                    </div>
+                  </div>
+                  <hr>
 
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Мобильный телефон</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {% if user.phone %}
-                      {{ user.phone }}
-                            {% else %}
-                            <a class="text-secondary " style="font-size: 16px" >Добавьте номер телефона в настройках профиля</a>
-                            {% endif %}
-                    </div>
-                  </div>
-                  <hr>
                   <div class="row">
                     <div class="col-sm-12">
-
-                      <a class="btn btn-primary "  href="{% url 'profile_update' user.id%}">Изменить личные данные</a>
+                      <button class="btn btn-primary " type="submit" href="">Сохранить</button>
                     </div>
                   </div>
+
                 </div>
               </div>
 
@@ -160,9 +169,11 @@
 
 
             </div>
+
           </div>
 
         </div>
     </div>
+        </form>
     {% endif %}
 {% endblock %}

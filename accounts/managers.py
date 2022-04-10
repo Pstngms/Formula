@@ -3,14 +3,15 @@ from django.contrib.auth.base_user import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
 
-    def create_user(self, email, first_name, last_name, password, **extra_fields):
+    def create_user(self, email, first_name, last_name, patronymic, password, **extra_fields):
 
         if not email:
             raise ValueError('The Email must be set')
         email = self.normalize_email(email)
         first_name = self.model(first_name)
         last_name = self.model(last_name)
-        user = self.model(email=email,first_name=first_name,last_name=last_name, **extra_fields)
+        patronymic = self.model(patronymic)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save()
         return user
