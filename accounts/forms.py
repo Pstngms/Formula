@@ -39,3 +39,5 @@ class UserUpdateForm(CustomUserCreationForm):
     patronymic = forms.CharField(label='Отчество', widget=forms.TextInput(attrs={'class': 'form-control'}))
     phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
+
+

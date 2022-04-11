@@ -59,8 +59,9 @@ def user_login(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, 'Вы успешно авторизировались')
-            return redirect('news')
+            return redirect('profile')
     else:
+
         form = UserLoginForm()
 
     return render(request, 'accounts/login.html', {"form": form})

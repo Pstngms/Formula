@@ -21,15 +21,15 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-start"  id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto ">
+                    <ul class="navbar-nav mr-auto " style="margin-left: 50px">
                             <li class="nav-item "><a href="{% url 'news' %}" class="nav-link px-3  link-dark h5">Новости</a></li>
                             <li class="nav-item "><a href="{% url 'events' %}" class="nav-link px-3 link-dark h5">Мероприятия</a></li>
                     </ul>
         </div>
         <div class="collapse navbar-collapse justify-content-end"  id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto ">
+                    <ul class="navbar-nav mr-auto " >
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item ">
+                        <li class="nav-item " >
                                  <a href="{% url 'profile' %}" class="nav-link px-3  link-dark h5 ">{{ user.first_name }}</a>
                              </li>
                            <li class="nav-item ">

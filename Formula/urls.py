@@ -10,8 +10,8 @@ from news.views import get_category, news_page
 
 urlpatterns = [
 
-    path('admin/', admin.site.urls),
-    path('', home_page),
+    path('admin/', admin.site.urls, name='admin'),
+    path('', home_page, name='home_page'),
     path('news/', news_page, name='news'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('news/category/<int:category_id>/', get_category, name='category'),

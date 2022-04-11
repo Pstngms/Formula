@@ -138,10 +138,16 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-9">
 
-                      <a class="btn btn-primary "  href="{% url 'profile_update' user.id%}">Изменить личные данные</a>
+                      <a class="btn btn-primary "style="margin-bottom: 10px"  href="{% url 'profile_update' user.id%}">Настройки профиля</a>
+
                     </div>
+                            {% if request.user.is_superuser %}
+                      <div class="col-sm-3">
+                          <a class="btn btn-outline-primary "  href="admin/">Админ-панель</a>
+                      </div>
+                            {% endif %}
                   </div>
                 </div>
               </div>

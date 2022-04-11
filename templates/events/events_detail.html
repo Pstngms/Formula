@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block title %}
 Мероприятия
 {% endblock %}
@@ -13,7 +14,7 @@
     <div class="container">
 
         {% if object.is_published %}
-        <div class="card mb-3 my-4  " style="background-color: #fafafa;">
+        <div class="card mb-3 my-4  " style="background-color: #fafafa; border-radius: 25px;">
 
               {% if object.photo%}
 
@@ -21,7 +22,7 @@
 
               {% endif %}
 
-          <div class="card-body border rounded">
+          <div class="card-body border rounded " style=" border-radius: 25px;">
               {% autoescape off %}
                   <p class="card-text" style="font-size: 17px"><strong>Описание:</strong></p>
                     <p class="card-text">{{ object.content|safe}}</p>
@@ -47,7 +48,7 @@
             </div>
             {% endif %}
 
-          <div class="card-body border rounded">
+          <div class="card-body ">
 
            {% include 'events/reg_events.html' with events_post_id=object.id %}
 
