@@ -6,6 +6,7 @@ from ckeditor.widgets import CKEditorWidget
 
 class EventsAdminForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorWidget(), label='Описание')
+    communication = forms.CharField(widget=CKEditorWidget(), label='Контакты')
 
     class Meta:
         model = Events

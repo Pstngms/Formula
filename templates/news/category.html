@@ -26,9 +26,9 @@
     <div class=" container " >
     {% for item in news %}
         {% if item.is_published %}
-        <div class="card mb-3 my-4  " style="background-color: #fafafa;">
-        <div class="card-body mb-2" style="background-color: #bbcbdf;">
-        <h5 class="card-title ">{{ item.title }}</h5>
+        <div class="card mb-3 my-4  " style="background-color: #fafafa; border-radius: 25px;">
+        <div class="card-body mb-2" style="background-color: #ced4ee; border-radius: 20px;">
+        <h5 class="card-title " style="margin-left: 10px">{{ item.title }}</h5>
         </div>
         <div id="carouselExampleDark{{item.id}}" class="carousel carousel-dark slide mb-2 " data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -57,7 +57,7 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-          <div class="card-body border rounded">
+          <div class="card-body border-top">
               {% autoescape off %}
             <p class="card-text">{{ item.content|safe}}</p>
               {% endautoescape %}

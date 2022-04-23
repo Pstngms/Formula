@@ -34,8 +34,10 @@
              </div>
 
          <div class="card-body border rounded">
+             {% autoescape off %}
              <p class="card-text" style="font-size: 17px"><strong>Контакты для связи:</strong></p>
-            <p class="card-text">{{ object.communication}}</p>
+            <p class="card-text">{{ object.communication|safe}}</p>
+             {% endautoescape %}
          </div>
 
             <div class="card-body border rounded">

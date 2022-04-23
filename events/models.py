@@ -32,8 +32,9 @@ class EventsRegistration(models.Model):
     is_registered = models.BooleanField(default=False, verbose_name='Зарегистрирован?')
     created = models.DateTimeField(default=timezone.now, verbose_name='Дата регистрации')
 
+
     def __str__(self):
         return f'{self.user_email}:{self.event} {self.is_registered}'
     class Meta:
         verbose_name = 'Регистрация на мероприятие'
-        verbose_name_plural = 'Регистрация на мероприятие'
+        verbose_name_plural = 'Регистрация на мероприятия'

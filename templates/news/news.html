@@ -3,6 +3,49 @@
 Новости
 {% endblock %}
 {% block content %}
+    <style>
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #ced4ee;
+  color: black;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Вверх</button>
+
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 
     <div class="p-3"   style="background-color: #fafafa;" >
         <div class="container  mb-4 mt-3"  >
@@ -25,23 +68,23 @@
         {% if item.is_published %}
         <div class="card mb-3 my-4  " style="background-color: #fafafa; border-radius: 25px;">
         <div class="card-body mb-2" style="background-color: #ced4ee; border-radius: 20px;">
-        <h5 class="card-title ">{{ item.title }}</h5>
+        <h5 class="card-title " style="margin-left: 10px">{{ item.title }}</h5>
         </div>
         <div id="carouselExampleDark{{item.id}}" class="carousel carousel-dark slide mb-2 " data-bs-ride="carousel">
           <div class="carousel-inner">
               {% if item.photo1 %}
             <div class="carousel-item active" data-bs-interval="10000">
-              <img src="{{ item.photo1.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt="" width="800ph" >
+              <img src="{{ item.photo1.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt=""   width="900ph" >
             </div>
               {% endif %}
                 {% if item.photo2 %}
             <div class="carousel-item" data-bs-interval="10000">
-              <img src="{{ item.photo2.url }}" class="img-fluid rounded mx-auto d-block" alt="" width="800ph" >
+              <img src="{{ item.photo2.url }}" class="img-fluid rounded mx-auto d-block" alt="" width="900ph" >
             </div>
                 {% endif %}
               {% if item.photo3 %}
             <div class="carousel-item" data-bs-interval="10000">
-              <img src="{{ item.photo3.url }}" class="img-fluid rounded mx-auto d-block" alt="" width="800ph" >
+              <img src="{{ item.photo3.url }}" class="img-fluid rounded mx-auto d-block" alt="" width="900ph" >
             </div>
               {% endif %}
           </div>
