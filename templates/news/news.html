@@ -70,7 +70,12 @@ function topFunction() {
         <div class="card-body mb-2" style="background-color: #ced4ee; border-radius: 20px;">
         <h5 class="card-title " style="margin-left: 10px">{{ item.title }}</h5>
         </div>
-        <div id="carouselExampleDark{{item.id}}" class="carousel carousel-dark slide mb-2 " data-bs-ride="carousel">
+        {% if not item.photo2 and not item.photo3 %}
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="{{ item.photo1.url }}" class="img-fluid rounded mx-auto d-block mx-5" alt=""   width="900ph" >
+            </div>
+            {% else %}
+             <div id="carouselExampleDark{{item.id}}" class="carousel carousel-dark slide mb-2 " data-bs-ride="carousel">
           <div class="carousel-inner">
               {% if item.photo1 %}
             <div class="carousel-item active" data-bs-interval="10000">
@@ -97,6 +102,8 @@ function topFunction() {
             <span class="visually-hidden">Next</span>
           </button>
         </div>
+            {% endif %}
+
           <div class="card-body border-top">
               {% autoescape off %}
             <p class="card-text">{{ item.content|safe}}</p>

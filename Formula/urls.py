@@ -2,7 +2,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
 from accounts.views import register, user_login, user_logout, profile, profile_update
 from events.views import events_page, ViewEvents, AddReg, RemoveReg
 from home.views import home_page

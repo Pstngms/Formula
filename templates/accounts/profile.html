@@ -76,7 +76,7 @@
 
                           <a class="text-secondary " style="font-size: 14px" >Добавьте Vk id в настройках профиля</a>
                              {% else %}
-                    <a class="text-secondary " href="https://vk.com/{{ user.vk_link }}">{{ user.vk_link }}</a>
+                    <a class="text-secondary " target="_blank" href="https://vk.com/{{ user.vk_link }}">{{ user.vk_link }}</a>
                           {% endif %}
 
                   </li>
@@ -157,7 +157,16 @@
                 <div class="col">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3">Записан на мероприятия:</h6>
+                      <h6 class="d-flex align-items-center mb-3">Список записей на мероприятия:</h6>
+                        {% for item in reg %}
+        {% if item.is_registered %}
+        <div class="card mb-3 my-4  " style="background-color: #fafafa; border-radius: 5px;">
+        <a href="{% url 'view_events' item.event.id%}" class="text-secondary " target="_blank" style="text-decoration: none ;"><h6 class="card-title " style="margin-left: 20px;margin-top: 10px;margin-bottom: 10px">{{ item.event }}</h6></a>
+
+        </div>
+        {% endif %}
+
+    {% endfor %}
                     </div>
                   </div>
                 </div>

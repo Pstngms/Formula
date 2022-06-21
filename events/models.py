@@ -34,7 +34,7 @@ class EventsRegistration(models.Model):
 
 
     def __str__(self):
-        return f'{self.user_email}:{self.event} {self.is_registered}'
+        return f'{self.user_email}:{self.event}:{self.is_registered}'
     class Meta:
         verbose_name = 'Регистрация на мероприятие'
         verbose_name_plural = 'Регистрация на мероприятия'

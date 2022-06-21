@@ -7,7 +7,7 @@ from ckeditor.widgets import CKEditorWidget
 
 
 class NewsAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
+    content = forms.CharField(widget=CKEditorWidget(),label="Описание")
 
     class Meta:
         model = News

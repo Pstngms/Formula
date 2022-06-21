@@ -7,15 +7,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
+from Formula import settings
 from accounts.forms import UserRegisterForm, UserLoginForm, UserUpdateForm
 
 from django.contrib import messages
 
 from accounts.models import CustomUser
+from events.models import Events, EventsRegistration
 
 
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    reg = EventsRegistration.objects.filter(user_email=request.user)
+
+
+    return render(request, 'accounts/profile.html',{"reg": reg})
 
 
 def profile_update(request,id):
