@@ -54,7 +54,7 @@
 }
     </style>
     {% if request.user.is_authenticated %}
-        <form method="POST" >
+        <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 <div class="container">
     <div class="main-body" style="padding-top: 30px">
@@ -63,7 +63,20 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://polimed.by/upload/iblock/661/66170d090fe9f213aec496c659767fb5.jpg" alt="Admin" class="rounded-circle" width="300">
+                      {% if user.avatar%}
+
+              <img src="{{ user.avatar.url }}" class="rounded-circle" width="300" alt="">
+                {% else %}
+
+                  <img src="https://polimed.by/upload/iblock/661/66170d090fe9f213aec496c659767fb5.jpg" class="rounded-circle" width="300" alt="">
+              {% endif %}
+
+                      <div class="col-sm-9 text-secondary">
+
+                            <input class="form-control" type="file" name="avatar" value="{{form.avatar}}">
+
+
+                    </div>
                     <div class="mt-3">
                       <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                     </div>

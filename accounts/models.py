@@ -16,7 +16,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False, verbose_name='Модератор?')
     is_active = models.BooleanField(default=True, verbose_name='Активный?')
     date_joined = models.DateTimeField(default=timezone.now)
-    avatar = models.ImageField(upload_to='/avatars/')
+    avatar = models.ImageField(upload_to='photos/avatar/%Y/%m/%d', blank=True, verbose_name='Аватар')
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()

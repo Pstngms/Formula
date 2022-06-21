@@ -38,6 +38,7 @@ class UserUpdateForm(CustomUserCreationForm):
     last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-control'}))
     patronymic = forms.CharField(label='Отчество', widget=forms.TextInput(attrs={'class': 'form-control'}))
     phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    avatar = forms.ImageField(label='Аватар', widget=forms.FileInput(attrs={'class': 'form-control'}))
 
 
 

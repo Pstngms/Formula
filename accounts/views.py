@@ -33,6 +33,7 @@ def profile_update(request,id):
             form.email = request.POST.get('email')
             form.phone = request.POST.get('phone')
             form.vk_link = request.POST.get('vk_link')
+            form.avatar = request.FILES.get('avatar')
             form.save()
             return HttpResponseRedirect("/profile")
         else:
